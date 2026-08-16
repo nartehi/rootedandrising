@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* offset for the fixed navbar when jumping to #anchors */
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-cream font-body text-bark antialiased;
+  }
+
+  ::selection {
+    @apply bg-clay/20 text-clay;
+  }
+}
+
+@layer components {
+  /* Small uppercase label that sits above most section headings */
+  .eyebrow {
+    @apply font-body text-xs font-medium uppercase tracking-widest text-clay/70;
+  }
+
+  .section-heading {
+    @apply font-display text-4xl font-light leading-tight text-bark md:text-5xl;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-clay px-8 py-4
+           font-body text-sm font-medium tracking-wide text-cream transition-all
+           duration-300 hover:bg-clay/90 hover:shadow-lg hover:shadow-clay/20
+           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+           focus-visible:outline-clay;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-clay/30
+           bg-transparent px-8 py-4 font-body text-sm font-medium tracking-wide text-clay
+           transition-all duration-300 hover:border-clay hover:bg-clay/5
+           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+           focus-visible:outline-clay;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
