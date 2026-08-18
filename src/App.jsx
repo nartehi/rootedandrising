@@ -10,6 +10,12 @@ import Resources from './sections/Resources'
 import Join from './sections/Join'
 import ModuleView from './sections/ModuleView'
 import About from './sections/About'
+import Signup from './sections/Signup'
+import GrowthPath from './sections/GrowthPath'
+import Women from './sections/Women'
+import WomanProfile from './sections/WomanProfile'
+import MissionValues from './sections/MissionValues'
+import { women } from './content'
 import { getModule } from './modules'
 
 // Full-page views live behind #/… hashes so they are linkable and the browser
@@ -18,7 +24,14 @@ const readRoute = () => {
   const { hash } = window.location
   const m = hash.match(/^#\/module\/([\w-]+)$/)
   if (m) return { view: 'module', slug: m[1] }
+  const w = hash.match(/^#\/women\/([\w-]+)$/)
+  if (w) return { view: 'woman', slug: w[1] }
   if (hash === '#/about') return { view: 'about', slug: null }
+  if (hash === '#/signup') return { view: 'signup', slug: null }
+  if (hash === '#/growth-path') return { view: 'growth-path', slug: null }
+  if (hash === '#/women') return { view: 'women', slug: null }
+  if (hash === '#/mission-values')
+    return { view: 'mission-values', slug: null }
   return { view: 'home', slug: null }
 }
 
@@ -37,40 +50,38 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'auto' })
   }, [])
 
+  const openWoman = useCallback((next) => {
+    window.location.hash = `#/women/${next}`
+    window.scrollTo({ top: 0, behavior: 'auto' })
+  }, [])
+
+  const closeWoman = useCallback(() => {
+    window.location.hash = '#/women'
+    window.scrollTo({ top: 0, behavior: 'auto' })
+  }, [])
+
   const closeModule = useCallback(() => {
     // Return to the Wisdom Well rather than the top of the page.
     window.location.hash = '#resources'
   }, [])
 
-  const closeAbout = useCallback(() => {
+  // Shared by the About and Signup pages — both return to the top of home.
+  const goHome = useCallback(() => {
     window.location.hash = '#top'
     window.scrollTo({ top: 0, behavior: 'auto' })
   }, [])
 
-  /**
-   * While a full-page view is open the homepage sections aren't mounted, so a
-   * plain `#join` link would change the hash with nothing to scroll to. Switch
-   * back to the homepage first, then scroll once the sections have rendered.
-   */
-  const goToSection = useCallback(
-    (href) => (e) => {
-      e.preventDefault()
-      window.location.hash = href
-      requestAnimationFrame(() => {
-        document
-          .querySelector(href)
-          ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      })
-    },
-    [],
-  )
-
   const active = view === 'module' ? getModule(slug) : null
+  const activeWoman =
+    view === 'woman'
+      ? women.profiles.find((p) => p.slug === slug)
+      : null
 
   // An unknown slug (stale link, typo) should not render a blank page.
   useEffect(() => {
     if (view === 'module' && !active) window.location.hash = '#resources'
-  }, [view, active])
+    if (view === 'woman' && !activeWoman) window.location.hash = '#/women'
+  }, [view, active, activeWoman])
 
   return (
     <>
@@ -81,7 +92,31 @@ export default function App() {
         </main>
       ) : view === 'about' ? (
         <main>
-          <About onBack={closeAbout} onNavigate={goToSection} />
+          <About onBack={goHome} />
+        </main>
+      ) : view === 'signup' ? (
+        <main>
+          <Signup onBack={goHome} />
+        </main>
+      ) : view === 'growth-path' ? (
+        <main>
+          <GrowthPath onBack={goHome} onOpenModule={openModule} />
+        </main>
+      ) : view === 'women' ? (
+        <main>
+          <Women onBack={goHome} onOpen={openWoman} />
+        </main>
+      ) : view === 'mission-values' ? (
+        <main>
+          <MissionValues onBack={goHome} />
+        </main>
+      ) : activeWoman ? (
+        <main>
+          <WomanProfile
+            profile={activeWoman}
+            onBack={closeWoman}
+            onOpen={openWoman}
+          />
         </main>
       ) : (
         <main>

@@ -5,15 +5,21 @@ import { story, images } from '../content'
 export default function Story() {
   return (
     <section id="story" className="bg-cream py-24 lg:py-32">
-      <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
+      {/* Top-aligned rather than centred: the portrait is much taller than the
+          text column, so centring left uneven whitespace above the heading. */}
+      <div className="mx-auto grid max-w-7xl items-start gap-14 px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
         <Reveal>
-          <div className="relative">
+          {/* Capped width so the 2:3 portrait does not tower over the text
+              column on wide screens. */}
+          <div className="relative mx-auto w-full max-w-md lg:mx-0">
             <div className="absolute -left-8 -top-8 h-40 w-40 rounded-full bg-honey/20 blur-3xl" />
             <img
               src={images.story}
               alt={story.imageAlt}
               loading="lazy"
-              className="relative aspect-[4/5] w-full rounded-[2rem] object-cover shadow-xl shadow-bark/10"
+              /* Matches the source image's 2:3 proportions, so the sunrise and
+                 the path at their feet are not cropped away. */
+              className="relative aspect-[2/3] w-full rounded-[2rem] object-cover shadow-xl shadow-bark/10"
             />
           </div>
         </Reveal>
@@ -24,9 +30,14 @@ export default function Story() {
           <p className="mt-6 font-body text-base leading-relaxed text-bark/70">
             {story.body}
           </p>
+          <p className="mt-5 font-body text-base leading-relaxed text-bark/70">
+            {story.bodyTwo}
+          </p>
+
+          <p className="eyebrow mt-10">{story.listLabel}</p>
 
           {/* Before / after framing: where she is, and where she's going */}
-          <div className="mt-10 grid gap-6 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
+          <div className="mt-6 grid gap-6 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
             <ul className="space-y-3">
               {story.struggles.map((item) => (
                 <li

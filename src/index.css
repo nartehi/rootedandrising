@@ -24,6 +24,12 @@
     @apply font-body text-xs font-medium uppercase tracking-widest text-clay/70;
   }
 
+  /* Heavier eyebrow for section labels that need to carry weight of their own.
+     Montserrat 700 is loaded in index.html — without it this renders as 600. */
+  .eyebrow-strong {
+    @apply font-body text-sm font-bold uppercase tracking-widest text-clay;
+  }
+
   .section-heading {
     @apply font-display text-4xl font-light leading-tight text-bark md:text-5xl;
   }
@@ -40,6 +46,16 @@
     @apply inline-flex items-center justify-center gap-2 rounded-full border border-clay/30
            bg-transparent px-8 py-4 font-body text-sm font-medium tracking-wide text-clay
            transition-all duration-300 hover:border-clay hover:bg-clay/5
+           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+           focus-visible:outline-clay;
+  }
+
+  /* Pill-shaped back link. Same rounded badge family as the buttons above, but
+     lighter so it never competes with a page's main call to action. */
+  .btn-badge {
+    @apply inline-flex items-center gap-2 rounded-full border border-clay/25 bg-sand/70
+           px-5 py-2.5 font-body text-sm font-medium tracking-wide text-clay
+           transition-all duration-300 hover:border-clay/50 hover:bg-sand
            focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
            focus-visible:outline-clay;
   }

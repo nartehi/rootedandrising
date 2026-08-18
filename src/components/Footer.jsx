@@ -8,10 +8,12 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[2fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-3">
+              {/* Round crop keeps the logo's cream backdrop from reading as a
+                  pale square against the dark footer. */}
               <img
                 src={images.logo}
                 alt=""
-                className="h-10 w-10 rounded-full object-cover"
+                className="h-11 w-11 rounded-full bg-cream object-contain p-1"
               />
               <span className="font-display text-xl font-medium tracking-wide">
                 Rooted &amp; Rising

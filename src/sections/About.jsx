@@ -4,7 +4,7 @@ import { about, images } from '../content'
 
 const icons = { Heart, BookOpen, Users, TreePine }
 
-export default function About({ onBack, onNavigate }) {
+export default function About({ onBack }) {
   const { founder, chapters, convictions, invitation } = about
 
   return (
@@ -13,7 +13,7 @@ export default function About({ onBack, onNavigate }) {
         <button
           type="button"
           onClick={onBack}
-          className="group inline-flex items-center gap-2 font-body text-sm font-medium text-bark/60 transition-colors hover:text-clay"
+          className="btn-badge group"
         >
           <ArrowLeft
             size={16}
@@ -24,7 +24,9 @@ export default function About({ onBack, onNavigate }) {
         </button>
 
         <header className="mt-8">
-          <span className="eyebrow">{about.eyebrow}</span>
+          <span className="eyebrow-strong">
+            {about.eyebrow}
+          </span>
           <h1 className="mt-5 font-display text-4xl font-light leading-tight text-bark md:text-5xl">
             {about.title}
           </h1>
@@ -36,13 +38,15 @@ export default function About({ onBack, onNavigate }) {
         {/* Founder portrait and pull-quote */}
         <Reveal>
           <section className="mt-14 grid items-center gap-10 rounded-[2rem] bg-sand/70 p-8 sm:p-10 lg:grid-cols-[auto_1fr] lg:gap-12">
-            <div className="relative mx-auto lg:mx-0">
+            {/* Portrait aspect rather than a circle: a tight round crop would
+                cut out the Bible and the ministry banner behind her. */}
+            <div className="relative mx-auto w-full max-w-[17rem] lg:mx-0">
               <div className="absolute -left-6 -top-6 h-32 w-32 rounded-full bg-honey/25 blur-3xl" />
               <img
-                src={images.story}
+                src={images.founder}
                 alt={about.imageAlt}
                 loading="lazy"
-                className="relative h-44 w-44 rounded-full object-cover shadow-xl shadow-bark/10 sm:h-52 sm:w-52"
+                className="relative aspect-[3/4] w-full rounded-[1.75rem] object-cover shadow-xl shadow-bark/10"
               />
             </div>
 
@@ -66,19 +70,46 @@ export default function About({ onBack, onNavigate }) {
               <section className="border-l-2 border-clay/25 pl-6 sm:pl-8">
                 <div className="flex items-center gap-3">
                   <span
-                    className="font-display text-sm text-clay/40"
+                    className="font-display text-sm font-bold text-clay"
                     aria-hidden="true"
                   >
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <span className="eyebrow">{chapter.eyebrow}</span>
+                  <span className="eyebrow-strong">
+                    {chapter.eyebrow}
+                  </span>
                 </div>
                 <h2 className="mt-4 font-display text-2xl font-medium leading-snug text-bark sm:text-3xl">
                   {chapter.heading}
                 </h2>
-                <p className="mt-5 max-w-2xl font-body text-base leading-[1.85] text-bark/75">
-                  {chapter.body}
-                </p>
+                {/* Bodies are blank-line separated in content.js so a long
+                    chapter reads as paragraphs rather than one dense block. */}
+                <div className="mt-5 max-w-2xl space-y-5">
+                  {chapter.body.split('\n\n').map((para) => (
+                    <p
+                      key={para}
+                      className="font-body text-base leading-[1.85] text-bark/75"
+                    >
+                      {para}
+                    </p>
+                  ))}
+                </div>
+
+                {/* Scripture answering the movement it sits under. Quieter than
+                    the module verse cards so it supports her words, not
+                    competes with them. */}
+                <figure className="mt-7 max-w-2xl rounded-[1.5rem] bg-sand/70 p-6 sm:p-7">
+                  <Quote size={18} className="text-clay" aria-hidden="true" />
+                  <blockquote className="mt-3 font-display text-lg font-light italic leading-relaxed text-bark sm:text-xl">
+                    {chapter.verse.text}
+                  </blockquote>
+                  <figcaption className="mt-4 font-body text-xs font-medium uppercase tracking-widest text-clay">
+                    {chapter.verse.ref}
+                    <span className="ml-2 normal-case tracking-normal text-bark/40">
+                      World English Bible
+                    </span>
+                  </figcaption>
+                </figure>
               </section>
             </Reveal>
           ))}
@@ -87,7 +118,9 @@ export default function About({ onBack, onNavigate }) {
         {/* What the ministry is committed to */}
         <Reveal>
           <section className="mt-20">
-            <span className="eyebrow">{convictions.eyebrow}</span>
+            <span className="eyebrow-strong">
+              {convictions.eyebrow}
+            </span>
             <h2 className="section-heading mt-4">{convictions.heading}</h2>
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
@@ -124,9 +157,10 @@ export default function About({ onBack, onNavigate }) {
               {invitation.body}
             </p>
             <div className="mt-9 flex flex-wrap justify-center gap-4">
+              {/* Routes, not section anchors — plain hash navigation. */}
               <a
-                href="#join"
-                onClick={onNavigate('#join')}
+                href="#/signup"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}
                 className="btn-primary group"
               >
                 {invitation.primaryCta}
@@ -137,8 +171,8 @@ export default function About({ onBack, onNavigate }) {
                 />
               </a>
               <a
-                href="#journey"
-                onClick={onNavigate('#journey')}
+                href="#/growth-path"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}
                 className="btn-secondary !border-cream/30 !text-cream hover:!bg-cream/10"
               >
                 {invitation.secondaryCta}

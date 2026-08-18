@@ -40,7 +40,11 @@ export default function Hero() {
           </blockquote>
 
           <div className="mt-10 flex flex-wrap gap-4">
-            <a href="#journey" className="btn-primary group">
+            <a
+              href="#/growth-path"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}
+              className="btn-primary group"
+            >
               {hero.primaryCta}
               <ArrowRight
                 size={16}

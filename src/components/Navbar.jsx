@@ -63,10 +63,13 @@ export default function Navbar() {
           onClick={goToSection('#top')}
           className="flex items-center gap-3"
         >
+          {/* The logo is amber line-art on cream, so over the pale hero photo
+              it would wash out. A solid cream disc with a clay ring gives it a
+              defined edge on any background. */}
           <img
             src={images.logo}
             alt=""
-            className="h-10 w-10 rounded-full object-cover"
+            className="h-11 w-11 rounded-full bg-cream object-contain p-1 shadow-sm ring-1 ring-clay/25"
           />
           <span className="font-display text-xl font-medium tracking-wide text-bark">
             Rooted &amp; Rising
