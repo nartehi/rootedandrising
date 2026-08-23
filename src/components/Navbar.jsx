@@ -59,8 +59,8 @@ export default function Navbar() {
         aria-label="Main"
       >
         <a
-          href="#top"
-          onClick={goToSection('#top')}
+          href="#/home"
+          onClick={goToSection('#/home')}
           className="flex items-center gap-3"
         >
           {/* The logo is amber line-art on cream, so over the pale hero photo

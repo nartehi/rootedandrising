@@ -13,12 +13,41 @@ import {
   Sparkles,
   Brain,
   BookOpen,
+  Briefcase,
+  Cloud,
   Compass,
+  Feather,
+  Flag,
+  Gift,
+  HandHeart,
+  Heart,
+  MessageCircle,
+  Scale,
+  ShieldCheck,
+  Users,
 } from 'lucide-react'
 import useProgress from '../hooks/useProgress'
 import Quiz from '../components/Quiz'
 
-const icons = { Sparkles, Brain, BookOpen, Compass }
+// Every icon a module in modules.js can declare.
+const icons = {
+  BookOpen,
+  Brain,
+  Briefcase,
+  Cloud,
+  Compass,
+  Feather,
+  Flag,
+  Gift,
+  HandHeart,
+  Heart,
+  MessageCircle,
+  Scale,
+  ShieldCheck,
+  Sparkles,
+  Sunrise,
+  Users,
+}
 
 export default function ModuleView({ module, onBack }) {
   const [active, setActive] = useState(0)

@@ -1,11 +1,48 @@
 import { useState } from 'react'
-import { Sparkles, Brain, BookOpen, Compass, ArrowRight, Check } from 'lucide-react'
+import {
+  ArrowRight,
+  Check,
+  BookOpen,
+  Brain,
+  Briefcase,
+  Cloud,
+  Compass,
+  Feather,
+  Flag,
+  Gift,
+  HandHeart,
+  Heart,
+  MessageCircle,
+  Scale,
+  ShieldCheck,
+  Sparkles,
+  Sunrise,
+  Users,
+} from 'lucide-react'
 import Reveal from '../components/Reveal'
 import { resources } from '../content'
 import { modules } from '../modules'
 import useProgress from '../hooks/useProgress'
 
-const icons = { Sparkles, Brain, BookOpen, Compass }
+// Every icon a module in modules.js can declare.
+const icons = {
+  BookOpen,
+  Brain,
+  Briefcase,
+  Cloud,
+  Compass,
+  Feather,
+  Flag,
+  Gift,
+  HandHeart,
+  Heart,
+  MessageCircle,
+  Scale,
+  ShieldCheck,
+  Sparkles,
+  Sunrise,
+  Users,
+}
 
 export default function Resources({ onOpenModule }) {
   const [stage, setStage] = useState(resources.stages.options[0])

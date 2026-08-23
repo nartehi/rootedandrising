@@ -6,8 +6,8 @@
 export const nav = [
   { label: 'About The Ministry', href: '#/about' },
   { label: 'Women of The Bible', href: '#/women' },
-  { label: 'Mission & Values', href: '#/mission-values' },
-  { label: 'Resources', href: '#resources' },
+  { label: 'Mentoring', href: '#/mentoring' },
+  { label: 'Programs', href: '#/programs' },
 ]
 
 export const images = {
@@ -17,7 +17,8 @@ export const images = {
   founder: '/images/aboutPic/aboutJewel-web.jpeg',
   hero: 'https://media.base44.com/images/public/6a3b767559c67635628a4561/83315ef0e_generated_97099c45.png',
   story: '/images/sections/notalone.jpg',
-  mission: 'https://media.base44.com/images/public/6a3b767559c67635628a4561/bd067a4ae_generated_f70c0cf0.png',
+  seedling: '/images/sections/seedling.jpg',
+  mission: '/images/sections/bibeStudy.jpg',
   journey: 'https://media.base44.com/images/public/6a3b767559c67635628a4561/c1c23fa5b_generated_ed1a6f87.png',
   resources: 'https://media.base44.com/images/public/6a3b767559c67635628a4561/f134be6bc_generated_d76bb2de.png',
   join: 'https://media.base44.com/images/public/6a3b767559c67635628a4561/f1a4edb70_generated_a115adb7.png',
@@ -35,14 +36,32 @@ export const hero = {
     'A young woman looking toward the horizon at golden hour, symbolizing hope and new beginnings',
 }
 
+/**
+ * Standalone purpose statement between the Hero and Our Story — the mission
+ * body given room of its own, as a quiet full-width moment.
+ */
+export const purpose = {
+  eyebrow: 'Our Purpose',
+  quote:
+    "To raise a generation of young women who know who they are in Christ, hear God's voice, walk in true freedom, and impact their communities for His glory.",
+}
+
 export const story = {
   eyebrow: 'Our Story',
   heading: "Sis, you don't have to walk alone anymore.",
-  body: 'This space was created so young adult women can encounter real faith, healing, grace in God, and community while learning who they truly are in Christ.',
+  // The heading is rendered in three parts so the middle phrase can carry the
+  // italic clay accent, as in the Hero.
+  headingLead: 'Helping young women',
+  headingAccent: 'heal, discover',
+  headingRest:
+    'their identity in Christ, and confidently walk in their purpose.',
+  body: 'Through biblical mentoring, faith-based coaching, and real community — we walk alongside young women ages 18–25 who are new to Christ, finding their way back after drifting, seeking healing from past wounds, or longing for a genuine relationship with God.',
   // Second paragraph balances the column against the portrait image beside it.
   bodyTwo:
     'You will not be handed a list of rules or asked to perform. You will be walked with — through the questions you have not said out loud, the parts of your story you have kept quiet, and the slow work of becoming who God already says you are.',
   listLabel: 'What changes when you stop walking alone',
+  beforeLabel: 'Before',
+  afterLabel: 'After',
   imageAlt:
     'A young woman walking alongside Jesus on a path at golden hour, no longer walking alone',
   struggles: [
@@ -59,24 +78,12 @@ export const story = {
   ],
 }
 
-/**
- * Mission & Values page (#/mission-values) — the framing above the two
- * homepage sections, which the page reuses unchanged.
- */
-export const missionValues = {
-  eyebrow: 'Mission & Values',
-  heading: 'What we are for, and what we stand on.',
-  intro:
-    'The mission is where this ministry is going. The values are what it refuses to compromise on along the way. Both are here in one place.',
-  backLabel: 'Back to home',
-}
-
 export const mission = {
   eyebrow: 'Mission',
   heading: 'Helping young women',
   body: "To raise a generation of young women who know who they are in Christ, hear God's voice, walk in true freedom, and impact their communities for His glory.",
   imageAlt:
-    'Gentle hands touching golden wheat grass in warm sunlight, representing peace and grounding',
+    'Young women gathered around an open Bible in warm light, studying scripture together',
   pillars: [
     {
       icon: 'Sprout',
@@ -124,15 +131,24 @@ export const values = {
 }
 
 export const journey = {
-  eyebrow: 'The Journey',
-  heading: 'The Growth Path',
-  subheading: 'Three phases to becoming who God created you to be.',
+  eyebrow: 'The Growth Path',
+  headingLead: 'Three phases to',
+  headingAccent: 'transformation',
+  subheading:
+    "Your journey from brokenness to purpose isn't a straight line — it's a sacred unfolding. Each phase meets you exactly where you are.",
+  outcomesLabel: "What you'll discover",
+  phaseCta: 'Book a sisterhood intro',
+  backLabel: 'Back to home',
   imageAlt:
     'A wildflower growing through cracked earth at sunrise, symbolizing resilience and new beginnings',
   phases: [
     {
       number: '01',
       icon: 'Sprout',
+      // Short name plus the phase it names, as in the growth-path cards.
+      name: 'Root',
+      subtitle: 'Grounding in identity',
+      tone: 'clay',
       title: 'Finding Your Identity in Christ',
       body: 'Discover who you truly are in Christ. Uncover the lies that held you back and replace them with God’s truth about your identity and worth.',
       outcomes: [
@@ -144,6 +160,9 @@ export const journey = {
     {
       number: '02',
       icon: 'Heart',
+      name: 'Heal',
+      subtitle: 'Restoration & freedom',
+      tone: 'mist',
       title: 'Healing from Rejection & Shame',
       body: 'Allow God to heal the wounds of heartbreak, rejection, and trauma. Find freedom through grace, vulnerability, and the power of authentic community.',
       outcomes: [
@@ -154,7 +173,10 @@ export const journey = {
     },
     {
       number: '03',
-      icon: 'Compass',
+      icon: 'Sun',
+      name: 'Rise',
+      subtitle: 'Walking in purpose',
+      tone: 'honey',
       title: 'Walking Boldly in Your Purpose',
       body: 'Step into the calling God has placed on your life. With confidence rooted in Christ, impact your community and world for His glory.',
       outcomes: [
@@ -164,6 +186,481 @@ export const journey = {
       ],
     },
   ],
+}
+
+/**
+ * Full-bleed image band between the Values and Join sections — a visual
+ * breath, not a content block, so it carries no copy.
+ */
+export const interlude = {
+  imageAlt:
+    'A young seedling breaking through soil in soft light, a small beginning taking root',
+}
+
+/**
+ * Mentoring page (#/mentoring) — who the mentoring is for, what it involves,
+ * and the ways to take part.
+ */
+export const mentoring = {
+  eyebrow: 'Mentoring',
+  heading: "You don't have to figure out your faith journey alone.",
+  intro:
+    'Christian mentoring designed to help young women grow spiritually, emotionally, and personally while keeping Jesus at the center.',
+  backLabel: 'Back to home',
+  primaryCta: 'Start your journey',
+  secondaryCta: 'See the growth path',
+
+  audience: {
+    eyebrow: 'Who it is for',
+    heading: 'Who is mentoring for?',
+    intro:
+      'If any of this sounds like where you are right now, you are exactly who this was built for.',
+    items: [
+      'Women ages 18–25',
+      'New Christians',
+      'Women returning to their faith',
+      'Women wanting deeper spiritual growth',
+      'Women struggling with identity',
+      'Women seeking Christian community',
+      'Women trying to understand their purpose',
+      'Women seeking Jesus',
+    ],
+  },
+
+  expect: {
+    eyebrow: 'What to expect',
+    heading: 'What you can expect',
+    items: [
+      {
+        icon: 'BookOpen',
+        title: 'Biblical guidance',
+        body: 'Scripture-centered conversations and lessons.',
+      },
+      {
+        icon: 'Sprout',
+        title: 'Personal growth',
+        body: 'Reflection exercises and practical next steps.',
+      },
+      {
+        icon: 'Heart',
+        title: 'Encouragement',
+        body: 'A safe environment to ask questions and grow.',
+      },
+      {
+        icon: 'Check',
+        title: 'Accountability',
+        body: 'Support for developing consistent spiritual habits.',
+      },
+      {
+        icon: 'Users',
+        title: 'Community',
+        body: 'Opportunities to connect with other Christian women.',
+      },
+      {
+        icon: 'Calendar',
+        title: 'In-Person Events',
+        body: 'Gatherings where the community meets face to face.',
+      },
+    ],
+  },
+
+  // Self-selecting entry points: three doors into the same ministry, so a
+  // visitor can pick the one that matches where she actually is.
+  begin: {
+    eyebrow: 'Start here',
+    heading: 'Where would you like to begin?',
+    intro:
+      'Three ways in. Choose the one that sounds most like you right now — none of them is behind the others.',
+    items: [
+      {
+        icon: 'Sprout',
+        title: "I'm new to faith",
+        body: 'Start building your relationship with God.',
+        cta: 'Start here',
+        href: '#/growth-path',
+      },
+      {
+        icon: 'Heart',
+        title: 'I want to grow',
+        body: 'Develop your faith, identity, confidence, and spiritual habits.',
+        cta: 'Explore programs',
+        href: '#/programs',
+      },
+      {
+        icon: 'Users',
+        title: 'I want community',
+        body: 'Walk it out alongside other Christian women.',
+        cta: 'Join us',
+        href: '#/signup',
+      },
+    ],
+  },
+
+  options: {
+    eyebrow: 'Mentoring options',
+    heading: 'Ways to walk it out',
+    intro:
+      'Two ways to take part — pick the one that fits the season you are in.',
+    items: [
+      {
+        icon: 'MessageCircle',
+        title: '1-on-1 Mentoring',
+        body: 'Personalized Christian mentoring.',
+      },
+      {
+        icon: 'Users',
+        title: 'Group Mentoring',
+        body: 'Small groups walking through a specific topic together.',
+      },
+    ],
+  },
+}
+
+/**
+ * The flagship 8-week curriculum, featured at the top of the Programs page.
+ * Richer than the programs below it — every module carries an objective, key
+ * scriptures, teaching topics, activities and an outcome.
+ */
+export const flagship = {
+  eyebrow: 'Signature program',
+  title: 'Rooted & Renewed',
+  subtitle: 'Discovering Your Identity in Christ',
+  length: '8 weeks · 8 modules',
+  audience:
+    'Christian women ages 18–25 seeking healing, confidence, purpose, and spiritual growth.',
+  promise:
+    'Helping young women break free from lies, heal from past wounds, and confidently walk in their God-given identity.',
+  audienceLabel: 'Who it is for',
+  promiseLabel: 'The promise',
+  labels: {
+    objective: 'Objective',
+    scriptures: 'Key scriptures',
+    topics: 'Teaching topics',
+    activities: 'Activities',
+    outcome: 'Outcome',
+    labelsList: 'Common labels',
+  },
+  expandLabel: 'Show module details',
+  collapseLabel: 'Hide module details',
+  modules: [
+    {
+      number: '01',
+      title: 'Who God Says You Are',
+      objective:
+        'Help women establish their identity in Christ rather than in performance, relationships, appearance, achievements, or past mistakes.',
+      scriptures: ['Ephesians 1:3–14', 'Psalm 139:13–14', '2 Corinthians 5:17'],
+      topics: [
+        'Identity versus self-worth',
+        'Being a daughter of God',
+        'God’s view of you',
+        'Understanding spiritual adoption',
+      ],
+      activities: [
+        'Identity Declaration Worksheet',
+        '“Who am I in Christ?” Bible study',
+        'Personal testimony reflection',
+      ],
+      outcome: 'Participants create their personal Identity Statement.',
+    },
+    {
+      number: '02',
+      title: 'Breaking False Labels',
+      objective:
+        'Identify lies and labels that have shaped self-perception.',
+      labels: [
+        'Not good enough',
+        'Rejected',
+        'Unlovable',
+        'Too broken',
+        'Failure',
+      ],
+      scriptures: ['John 8:32', 'Romans 12:2'],
+      topics: [
+        'How labels are formed',
+        'The power of agreement with lies',
+        'Replacing lies with truth',
+      ],
+      activities: [
+        'Lie vs. Truth Exercise',
+        'Label-Breaking Prayer Session',
+        'Scripture replacement cards',
+      ],
+      outcome:
+        'Participants identify and replace at least 5 false beliefs.',
+    },
+    {
+      number: '03',
+      title: 'Confidence in Christ',
+      objective:
+        'Develop biblical confidence rooted in God rather than circumstances.',
+      scriptures: ['Philippians 4:13', 'Jeremiah 17:7'],
+      topics: [
+        'God-confidence vs self-confidence',
+        'Walking boldly in purpose',
+        'Overcoming comparison',
+      ],
+      activities: [
+        'Confidence Assessment',
+        'Purpose Discovery Exercise',
+        'Speaking Truth Aloud Practice',
+      ],
+      outcome:
+        'Women learn to operate from confidence rather than fear.',
+    },
+    {
+      number: '04',
+      title: 'Renewing Your Mind',
+      objective: 'Teach biblical thought transformation.',
+      scriptures: ['Romans 12:2', 'Philippians 4:8'],
+      topics: [
+        'The battlefield of the mind',
+        'Identifying toxic thinking',
+        'Developing a biblical mindset',
+      ],
+      activities: [
+        'Thought Journal',
+        'Daily Scripture Meditation Plan',
+        'Mind Renewal Challenge',
+      ],
+      outcome:
+        'Participants learn practical tools for changing thought patterns.',
+    },
+    {
+      number: '05',
+      title: 'Shame and Grace',
+      objective:
+        'Help women understand the difference between conviction and shame.',
+      scriptures: ['Romans 8:1', 'Hebrews 4:16'],
+      topics: [
+        'What shame sounds like',
+        'How grace transforms us',
+        'Receiving God’s mercy',
+      ],
+      activities: [
+        'Shame Inventory Exercise',
+        'Grace Letter from God Activity',
+        'Group Discussion',
+      ],
+      outcome:
+        'Participants begin releasing shame and embracing grace.',
+    },
+    {
+      number: '06',
+      title: 'Forgiveness',
+      objective: 'Guide women through biblical forgiveness.',
+      scriptures: ['Matthew 6:14–15', 'Ephesians 4:32'],
+      topics: [
+        'What forgiveness is and isn’t',
+        'Forgiving others',
+        'Self-forgiveness',
+        'Boundaries after forgiveness',
+      ],
+      activities: [
+        'Forgiveness Reflection Worksheet',
+        'Release Prayer',
+        'Letter Writing Exercise',
+      ],
+      outcome:
+        'Participants understand healthy biblical forgiveness.',
+    },
+    {
+      number: '07',
+      title: 'Emotional Healing',
+      objective: 'Help women bring emotional wounds before God.',
+      scriptures: ['Psalm 147:3', 'Isaiah 61:1'],
+      topics: [
+        'Healing from rejection',
+        'Healing from disappointment',
+        'Processing emotions with God',
+        'Healthy coping skills',
+      ],
+      activities: [
+        'Emotional Triggers Assessment',
+        'Healing Prayer Session',
+        'Journaling Prompts',
+      ],
+      outcome:
+        'Participants gain practical tools for emotional wellness.',
+    },
+    {
+      number: '08',
+      title: 'Trusting God Again',
+      objective:
+        'Restore confidence in God’s character after disappointment.',
+      scriptures: ['Proverbs 3:5–6', 'Psalm 56:3'],
+      topics: [
+        'Trust after heartbreak',
+        'Trust after unanswered prayers',
+        'God’s faithfulness',
+        'Surrender and obedience',
+      ],
+      activities: [
+        'Trust Timeline Exercise',
+        'Faith Story Reflection',
+        'Future Surrender Prayer',
+      ],
+      outcome: 'Participants develop a renewed trust in God.',
+    },
+  ],
+}
+
+/**
+ * Programs page (#/programs) — the five guided programs, each a set of
+ * modules plus one interactive activity that saves on-device.
+ */
+export const programs = {
+  eyebrow: 'Programs',
+  heading: 'Programs to walk you forward.',
+  intro:
+    'Start with the signature 8-week program, or pick one of the shorter tracks below. Nothing here expires, and nothing has to be done in order.',
+  moreHeading: 'Shorter tracks',
+  moreIntro:
+    'Focused sets of modules, each built around one part of the journey.',
+  backLabel: 'Back to home',
+  moduleLabel: 'modules',
+  activityLabel: 'Interactive',
+  items: [
+    {
+      slug: 'knowing-god',
+      number: '01',
+      icon: 'Sparkles',
+      title: 'Knowing God',
+      body: 'Begin at the beginning — who God is, and how to know Him for yourself.',
+      modules: [
+        'Who Is God?',
+        'Who Is Jesus?',
+        'Learning to Pray',
+        'Reading the Bible',
+        'Hearing From God',
+        'Trusting God',
+      ],
+    },
+    {
+      slug: 'breaking-free-from-false-labels',
+      number: '02',
+      icon: 'Unlock',
+      title: 'Breaking Free From False Labels',
+      body: 'Trace the labels back to where they came from, and replace them with what God says.',
+      modules: [
+        'Where Did the Label Come From?',
+        'What Does God Say About Me?',
+        'Breaking the Lies',
+        'Releasing Rejection',
+        'Letting Go of Comparison',
+        'Walking in Your New Identity',
+      ],
+      activity: {
+        kind: 'lie',
+        title: 'Identify the lie',
+        prompt: '“I’m not good enough.”',
+        question: 'What does God say instead?',
+        placeholder: 'Write the truth you are holding on to…',
+        options: [
+          'I am fearfully and wonderfully made. — Psalm 139:14',
+          'I am God’s handiwork, created in Christ Jesus. — Ephesians 2:10',
+          'There is no condemnation for those in Christ. — Romans 8:1',
+          'I am chosen, holy, and dearly loved. — Colossians 3:12',
+        ],
+      },
+    },
+    {
+      slug: 'confidence-in-christ',
+      number: '03',
+      icon: 'Sun',
+      title: 'Confidence in Christ',
+      body: 'Confidence that is rooted in who God says you are, not in how you compare.',
+      modules: [
+        'Identity vs. Image',
+        'Confidence vs. Comparison',
+        'Understanding Your Worth',
+        'People-Pleasing',
+        'Healthy Boundaries',
+        'Walking Boldly With Christ',
+      ],
+      activity: {
+        kind: 'scale',
+        title: 'Confidence reflection',
+        question:
+          'How confident do you currently feel in your identity in Christ?',
+        minLabel: 'Not confident',
+        maxLabel: 'Very confident',
+        // Asked again at the end of the program so growth is visible.
+        note: 'You will be asked this again at the end of the program, so you can see how far you have come.',
+        startLabel: 'Starting out',
+        endLabel: 'Now',
+      },
+    },
+    {
+      slug: 'healing-the-heart',
+      number: '04',
+      icon: 'Heart',
+      title: 'Healing the Heart',
+      body: 'God cares about what hurt you. This is the slow, gentle work of healing.',
+      modules: [
+        'God Cares About Your Pain',
+        'Naming What Hurts',
+        'Shame & Grace',
+        'Forgiveness',
+        'Rejection',
+        'Trusting God Again',
+        'Moving Forward',
+      ],
+      activity: {
+        kind: 'checkin',
+        title: 'Heart check-in',
+        question: 'What emotion are you experiencing today?',
+        options: [
+          'Sad',
+          'Angry',
+          'Lonely',
+          'Disappointed',
+          'Afraid',
+          'Hopeful',
+          'Peaceful',
+          'Grateful',
+          'Other',
+        ],
+        followUp: 'What do you think God wants you to bring to Him today?',
+        placeholder: 'Write as much or as little as you want…',
+      },
+    },
+    {
+      slug: 'purpose-and-calling',
+      number: '05',
+      icon: 'Compass',
+      title: 'Purpose & Calling',
+      body: 'What God made you for, and the next step toward walking in it.',
+      modules: [
+        'Why Did God Create Me?',
+        'Discovering Your Gifts',
+        'Understanding Your Passions',
+        'Serving God',
+        'Calling vs. Career',
+        'Taking Your Next Step',
+      ],
+      activity: {
+        kind: 'gifts',
+        title: 'My gifts',
+        question: 'Which of these sound like you?',
+        options: [
+          'Encouraging',
+          'Teaching',
+          'Leadership',
+          'Serving',
+          'Creativity',
+          'Communication',
+          'Hospitality',
+          'Organization',
+        ],
+        statementTitle: 'My purpose statement',
+        statementLead: 'I believe God may be calling me to',
+        statementMid: 'so that I can',
+        callingPlaceholder: 'what you sense you are being called to…',
+        outcomePlaceholder: 'the difference it would make…',
+      },
+    },
+  ],
+  savedLabel: 'Saved on this device',
 }
 
 export const resources = {
