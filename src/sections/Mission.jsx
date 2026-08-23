@@ -9,7 +9,7 @@ export default function Mission() {
     <section id="mission" className="relative overflow-hidden bg-sand py-24 lg:py-32">
       <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
         <Reveal>
-          <span className="eyebrow">{mission.eyebrow}</span>
+          <span className="eyebrow-strong">{mission.eyebrow}</span>
           <h2 className="section-heading mt-4">{mission.heading}</h2>
           <p className="mt-6 font-body text-base leading-relaxed text-bark/70">
             {mission.body}
@@ -44,7 +44,9 @@ export default function Mission() {
               src={images.mission}
               alt={mission.imageAlt}
               loading="lazy"
-              className="relative aspect-square w-full rounded-[2rem] object-cover shadow-xl shadow-bark/10"
+              /* Matches the source image's 3:2 proportions so the group around
+                 the open Bible is not cropped at the edges. */
+              className="relative aspect-[3/2] w-full rounded-[2rem] object-cover shadow-xl shadow-bark/10"
             />
           </div>
         </Reveal>

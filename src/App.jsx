@@ -3,10 +3,13 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Hero from './sections/Hero'
 import Story from './sections/Story'
+import Purpose from './sections/Purpose'
 import Mission from './sections/Mission'
 import Values from './sections/Values'
-import Journey from './sections/Journey'
-import Resources from './sections/Resources'
+import Interlude from './sections/Interlude'
+import Mentoring from './sections/Mentoring'
+import Programs from './sections/Programs'
+import GrowthPathPage from './sections/GrowthPathPage'
 import Join from './sections/Join'
 import ModuleView from './sections/ModuleView'
 import About from './sections/About'
@@ -14,7 +17,6 @@ import Signup from './sections/Signup'
 import GrowthPath from './sections/GrowthPath'
 import Women from './sections/Women'
 import WomanProfile from './sections/WomanProfile'
-import MissionValues from './sections/MissionValues'
 import { women } from './content'
 import { getModule } from './modules'
 
@@ -29,9 +31,12 @@ const readRoute = () => {
   if (hash === '#/about') return { view: 'about', slug: null }
   if (hash === '#/signup') return { view: 'signup', slug: null }
   if (hash === '#/growth-path') return { view: 'growth-path', slug: null }
+  if (hash === '#/mentoring') return { view: 'mentoring', slug: null }
+  if (hash === '#/programs') return { view: 'programs', slug: null }
+  if (hash === '#/growth-path-phases')
+    return { view: 'growth-path-phases', slug: null }
   if (hash === '#/women') return { view: 'women', slug: null }
-  if (hash === '#/mission-values')
-    return { view: 'mission-values', slug: null }
+  // '', '#', and '#/home' all resolve to home so old links keep working.
   return { view: 'home', slug: null }
 }
 
@@ -62,12 +67,12 @@ export default function App() {
 
   const closeModule = useCallback(() => {
     // Return to the Wisdom Well rather than the top of the page.
-    window.location.hash = '#resources'
+    window.location.hash = '#/programs'
   }, [])
 
   // Shared by the About and Signup pages — both return to the top of home.
   const goHome = useCallback(() => {
-    window.location.hash = '#top'
+    window.location.hash = '#/home'
     window.scrollTo({ top: 0, behavior: 'auto' })
   }, [])
 
@@ -79,7 +84,7 @@ export default function App() {
 
   // An unknown slug (stale link, typo) should not render a blank page.
   useEffect(() => {
-    if (view === 'module' && !active) window.location.hash = '#resources'
+    if (view === 'module' && !active) window.location.hash = '#/programs'
     if (view === 'woman' && !activeWoman) window.location.hash = '#/women'
   }, [view, active, activeWoman])
 
@@ -106,9 +111,17 @@ export default function App() {
         <main>
           <Women onBack={goHome} onOpen={openWoman} />
         </main>
-      ) : view === 'mission-values' ? (
+      ) : view === 'growth-path-phases' ? (
         <main>
-          <MissionValues onBack={goHome} />
+          <GrowthPathPage onBack={goHome} />
+        </main>
+      ) : view === 'programs' ? (
+        <main>
+          <Programs onBack={goHome} onOpenModule={openModule} />
+        </main>
+      ) : view === 'mentoring' ? (
+        <main>
+          <Mentoring onBack={goHome} />
         </main>
       ) : activeWoman ? (
         <main>
@@ -121,11 +134,11 @@ export default function App() {
       ) : (
         <main>
           <Hero />
+          <Purpose />
           <Story />
           <Mission />
           <Values />
-          <Journey />
-          <Resources onOpenModule={openModule} />
+          <Interlude />
           <Join />
         </main>
       )}
