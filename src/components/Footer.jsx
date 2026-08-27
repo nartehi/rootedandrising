@@ -1,5 +1,23 @@
-import { Instagram, Mail, Heart } from 'lucide-react'
+import { Instagram, Youtube, Mail, Heart } from 'lucide-react'
 import { footer, nav, images } from '../content'
+
+/* Lucide ships no TikTok glyph, so the mark is inlined to match the sizing
+   and currentColor behaviour of its siblings. */
+function TikTok({ size = 16, ...props }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      {...props}
+    >
+      <path d="M16.5 2h-3v13.2a2.7 2.7 0 1 1-2.2-2.65V9.5a5.8 5.8 0 1 0 5.2 5.77V8.94a6.6 6.6 0 0 0 3.9 1.27V7.14A3.7 3.7 0 0 1 16.5 2Z" />
+    </svg>
+  )
+}
+
+const socialIcons = { instagram: Instagram, youtube: Youtube, tiktok: TikTok }
 
 export default function Footer() {
   return (
@@ -47,23 +65,28 @@ export default function Footer() {
               Connect
             </h2>
             <ul className="mt-5 space-y-3">
-              <li>
-                <a
-                  href={footer.instagram}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="inline-flex items-center gap-2 font-body text-sm text-cream/60 transition-colors hover:text-cream"
-                >
-                  <Instagram size={16} aria-hidden="true" />
-                  Follow us on Instagram
-                </a>
-              </li>
+              {footer.socials.map((social) => {
+                const Icon = socialIcons[social.icon]
+                return (
+                  <li key={social.href}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="inline-flex items-center gap-2 font-body text-sm text-cream/60 transition-colors hover:text-cream"
+                    >
+                      <Icon size={18} aria-hidden="true" />
+                      {social.label}
+                    </a>
+                  </li>
+                )
+              })}
               <li>
                 <a
                   href={`mailto:${footer.email}`}
                   className="inline-flex items-center gap-2 font-body text-sm text-cream/60 transition-colors hover:text-cream"
                 >
-                  <Mail size={16} aria-hidden="true" />
+                  <Mail size={18} aria-hidden="true" />
                   Email us
                 </a>
               </li>

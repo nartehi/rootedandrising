@@ -5,16 +5,44 @@ import { join, resources, images } from '../content'
 
 export default function Join() {
   const [form, setForm] = useState({ name: '', email: '', stage: '' })
-  const [submitted, setSubmitted] = useState(false)
+  // 'idle' | 'sending' | 'done' | 'error'
+  const [status, setStatus] = useState('idle')
 
   const update = (field) => (e) =>
     setForm((prev) => ({ ...prev, [field]: e.target.value }))
 
-  // No backend yet — this captures the signup locally and confirms to the user.
-  // Wire up to a real mailing list provider when one is chosen.
-  const handleSubmit = (e) => {
+  /**
+   * Posts the signup to Formspree, which forwards it to the ministry inbox.
+   * Nothing opens on the visitor's machine — they stay on the page and see the
+   * confirmation. `status` drives which of the three states renders below.
+   */
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    setStatus('sending')
+
+    try {
+      const res = await fetch(join.formEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          stage: form.stage || 'Not specified',
+          _subject: 'Joining the Sisterhood',
+        }),
+      })
+
+      if (!res.ok) throw new Error(`Formspree responded ${res.status}`)
+      setStatus('done')
+    } catch (err) {
+      // Network failure or a misconfigured endpoint — offer the inbox directly
+      // rather than losing the message silently.
+      console.error('Signup failed:', err)
+      setStatus('error')
+    }
   }
 
   return (
@@ -40,7 +68,7 @@ export default function Join() {
                 </p>
               </div>
 
-              {submitted ? (
+              {status === 'done' ? (
                 <div
                   role="status"
                   className="mx-auto mt-10 flex max-w-xl flex-col items-center gap-4 rounded-3xl border border-clay/20 bg-cream/80 px-8 py-12 text-center"
@@ -61,6 +89,22 @@ export default function Join() {
                   onSubmit={handleSubmit}
                   className="mx-auto mt-10 max-w-xl space-y-5"
                 >
+                  {status === 'error' && (
+                    <p
+                      role="alert"
+                      className="rounded-2xl border border-clay/25 bg-cream/80 px-5 py-4 font-body text-sm leading-relaxed text-bark/70"
+                    >
+                      Something went wrong sending that. Please try again, or
+                      email us directly at{' '}
+                      <a
+                        href={`mailto:${join.email}`}
+                        className="font-medium text-clay underline underline-offset-4 transition-colors hover:text-bark"
+                      >
+                        {join.email}
+                      </a>
+                      .
+                    </p>
+                  )}
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div>
                       <label
@@ -118,8 +162,12 @@ export default function Join() {
                     </select>
                   </div>
 
-                  <button type="submit" className="btn-primary group w-full">
-                    {join.cta}
+                  <button
+                    type="submit"
+                    disabled={status === 'sending'}
+                    className="btn-primary group w-full disabled:cursor-not-allowed disabled:opacity-70"
+                  >
+                    {status === 'sending' ? 'Sending…' : join.cta}
                     <Send
                       size={15}
                       className="transition-transform duration-300 group-hover:translate-x-1"

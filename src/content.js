@@ -1085,8 +1085,17 @@ export const signup = {
   successCta: 'Back to home',
 }
 
+export const contactEmail = 'RootedAndRising@aol.com'
+
 export const join = {
   eyebrow: 'Connect',
+  email: contactEmail,
+  /**
+   * Formspree endpoint the signup form posts to; Formspree forwards each
+   * submission to contactEmail. Replace YOUR_FORM_ID with the id from
+   * formspree.io (Forms → your form → the endpoint URL) to go live.
+   */
+  formEndpoint: 'https://formspree.io/f/YOUR_FORM_ID',
   heading: "Let's stay connected, sis.",
   body: 'Get weekly encouragement, healing resources, Bible studies, and honest faith conversations delivered straight to your inbox.',
   nameLabel: 'Your Name',
@@ -1103,6 +1112,22 @@ export const join = {
 export const footer = {
   tagline:
     'A sacred sanctuary for young women to find healing, purpose, and sisterhood through faith-based mentorship, grounding them in identity while empowering them to rise.',
-  instagram: 'https://instagram.com',
-  email: 'hello@rootedandrising.com',
+  email: contactEmail,
+  socials: [
+    {
+      label: 'Follow us on Instagram',
+      href: 'https://www.instagram.com/rootedandrisingmentoring',
+      icon: 'instagram',
+    },
+    {
+      label: 'Watch on YouTube',
+      href: 'https://youtube.com/@rootedandrisingmentoring',
+      icon: 'youtube',
+    },
+    {
+      label: 'Follow us on TikTok',
+      href: 'https://www.tiktok.com/@rootedandrising___',
+      icon: 'tiktok',
+    },
+  ],
 }
