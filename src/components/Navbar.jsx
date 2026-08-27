@@ -71,18 +71,18 @@ export default function Navbar() {
             alt=""
             className="h-11 w-11 rounded-full bg-cream object-contain p-1 shadow-sm ring-1 ring-clay/25"
           />
-          <span className="font-display text-xl font-medium tracking-wide text-bark">
+          <span className="font-display text-xl font-bold tracking-wide text-bark">
             Rooted &amp; Rising
           </span>
         </a>
 
-        <ul className="hidden items-center gap-8 lg:flex">
+        <ul className="hidden items-center gap-6 lg:flex">
           {nav.map((item) => (
             <li key={item.href}>
               <a
                 href={item.href}
                 onClick={goToSection(item.href)}
-                className="font-body text-sm font-medium text-bark/70 transition-colors hover:text-clay"
+                className="font-body text-base font-semibold text-bark/85 transition-colors hover:text-clay"
               >
                 {item.label}
               </a>
@@ -118,7 +118,7 @@ export default function Navbar() {
                 <a
                   href={item.href}
                   onClick={goToSection(item.href)}
-                  className="block rounded-lg px-2 py-3 font-body text-base text-bark/80 transition-colors hover:bg-clay/5 hover:text-clay"
+                  className="block rounded-lg px-2 py-3 font-body text-lg font-semibold text-bark/85 transition-colors hover:bg-clay/5 hover:text-clay"
                 >
                   {item.label}
                 </a>
