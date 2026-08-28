@@ -1092,10 +1092,9 @@ export const join = {
   email: contactEmail,
   /**
    * Formspree endpoint the signup form posts to; Formspree forwards each
-   * submission to contactEmail. Replace YOUR_FORM_ID with the id from
-   * formspree.io (Forms → your form → the endpoint URL) to go live.
+   * submission to contactEmail.
    */
-  formEndpoint: 'https://formspree.io/f/YOUR_FORM_ID',
+  formEndpoint: 'https://formspree.io/f/xbgjryod',
   heading: "Let's stay connected, sis.",
   body: 'Get weekly encouragement, healing resources, Bible studies, and honest faith conversations delivered straight to your inbox.',
   nameLabel: 'Your Name',

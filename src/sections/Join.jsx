@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Send, Check } from 'lucide-react'
 import Reveal from '../components/Reveal'
 import { join, resources, images } from '../content'
@@ -10,6 +10,22 @@ export default function Join() {
 
   const update = (field) => (e) =>
     setForm((prev) => ({ ...prev, [field]: e.target.value }))
+
+  /**
+   * Hold the thank-you long enough to read, then hand the empty form back so a
+   * second person can sign up on a shared phone or laptop. Clearing the fields
+   * here rather than on submit keeps the name visible in the message above.
+   */
+  useEffect(() => {
+    if (status !== 'done') return
+
+    const timer = setTimeout(() => {
+      setForm({ name: '', email: '', stage: '' })
+      setStatus('idle')
+    }, 5000)
+
+    return () => clearTimeout(timer)
+  }, [status])
 
   /**
    * Posts the signup to Formspree, which forwards it to the ministry inbox.
